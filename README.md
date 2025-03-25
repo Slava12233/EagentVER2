@@ -100,11 +100,24 @@ The WooCommerce AI Agent is built on a multi-agent architecture that delegates s
 │ Request   │      │            │      │  Agent     │      │   API     │
 │           │      │            │      │            │      │           │
 └───────────┘      └────────────┘      └────────────┘      └───────────┘
-       ▲                                      │                  │
-       │                                      │                  │
-       └──────────────────────────────────────┴──────────────────┘
+       ▲                 ▲                   │                  │
+       │                 │                   │                  │
+       │                 └───────────────────┴──────────────────┘
+       │                                │
+       └────────────────────────────────┘
                           Response
 ```
+
+The request flow follows these steps:
+1. User sends a request in natural language to the Main Agent
+2. Main Agent processes and routes the request to the appropriate Specialized Agent (Product, Category, Order, etc.)
+3. Specialized Agent interacts with the WooCommerce API to perform the requested operation
+4. Results from WooCommerce API are received by the Specialized Agent, which processes them
+5. Specialized Agent sends the processed results back to the Main Agent
+6. Main Agent evaluates the response, potentially requests additional information from other agents if needed
+7. When the Main Agent is satisfied with the response, it formats the final answer and sends it to the User
+
+This centralized flow ensures the Main Agent maintains full control over the interaction, can perform quality checks on responses, and can coordinate complex operations that involve multiple specialized agents.
 
 ### Installation
 
@@ -284,11 +297,24 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 │ משתמש    │      │            │      │  מתמחה     │      │WooCommerce│
 │           │      │            │      │            │      │           │
 └───────────┘      └────────────┘      └────────────┘      └───────────┘
-       ▲                                      │                  │
-       │                                      │                  │
-       └──────────────────────────────────────┴──────────────────┘
-                          תשובה
+       ▲                 ▲                   │                  │
+       │                 │                   │                  │
+       │                 └───────────────────┴──────────────────┘
+       │                                │
+       └────────────────────────────────┘
+                         תשובה
 ```
+
+זרימת הבקשה כוללת את השלבים הבאים:
+1. המשתמש שולח בקשה בשפה טבעית לסוכן הראשי
+2. הסוכן הראשי מעבד ומנתב את הבקשה לסוכן המתמחה המתאים (מוצרים, קטגוריות, הזמנות וכו')
+3. הסוכן המתמחה מתקשר עם ה-API של WooCommerce כדי לבצע את הפעולה המבוקשת
+4. התוצאות מה-API של WooCommerce מתקבלות על ידי הסוכן המתמחה, אשר מעבד אותן
+5. הסוכן המתמחה שולח את התוצאות המעובדות בחזרה לסוכן הראשי
+6. הסוכן הראשי מעריך את התשובה, ובמידת הצורך מבקש מידע נוסף מסוכנים אחרים
+7. כאשר הסוכן הראשי מרוצה מהתשובה, הוא מעצב את התשובה הסופית ושולח אותה למשתמש
+
+זרימה מרוכזת זו מבטיחה שהסוכן הראשי שומר על שליטה מלאה באינטראקציה, יכול לבצע בדיקות איכות על תשובות, ויכול לתאם פעולות מורכבות שמערבות מספר סוכנים מתמחים.
 
 ### התקנה
 
