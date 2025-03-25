@@ -1,0 +1,244 @@
+/* עיצוב כללי */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Heebo', sans-serif;
+    background-color: #f5f5f5;
+    height: 100vh;
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* עיצוב מיכל הצ'אט */
+.chat-container {
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* עיצוב כותרת */
+.chat-header {
+    background-color: #8A2BE2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.chat-header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* עיצוב איזור ההודעות */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* עיצוב הודעות */
+.message {
+    display: flex;
+    max-width: 80%;
+}
+
+.message.user {
+    align-self: flex-end;
+}
+
+.message.bot {
+    align-self: flex-start;
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.user .message-content {
+    background-color: #8A2BE2;
+    color: white;
+}
+
+.bot .message-content {
+    background-color: #EFEFEF;
+    color: #333;
+}
+
+/* עיצוב תיבת קלט */
+.chat-input-container {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+#chat-form {
+    display: flex;
+    gap: 10px;
+}
+
+#user-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+#user-input:focus {
+    border-color: #8A2BE2;
+}
+
+#send-button {
+    background-color: #8A2BE2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#send-button:hover {
+    background-color: #7823c9;
+}
+
+/* אנימציה להודעות חדשות */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* עיצוב סמן טעינה */
+.typing-indicator {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.typing-indicator span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #8A2BE2;
+    animation: typing-animation 1.5s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes typing-animation {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    30% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+/* עיצוב סגנון לתיבת הצעות */
+.suggestion-container {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.suggestion-title {
+    font-size: 12px;
+    color: #777;
+    margin-left: 8px;
+}
+
+.suggestion-btn {
+    background-color: #f0e6ff;
+    color: #8A2BE2;
+    border: 1px solid #d6c2ff;
+    border-radius: 15px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.suggestion-btn:hover {
+    background-color: #e0d0ff;
+    border-color: #8A2BE2;
+}
+
+/* פורמט מיוחד לתוכן בוט */
+.bot .message-content ul {
+    margin: 8px 0 0 0;
+    padding-right: 20px;
+}
+
+.bot .message-content li {
+    margin-bottom: 5px;
+}
+
+.bot .message-content strong {
+    color: #8A2BE2;
+}
+
+/* תיקונים עבור הודעת ברוכים הבאים */
+.message.bot .message-content {
+    max-width: 100%;
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+} 
